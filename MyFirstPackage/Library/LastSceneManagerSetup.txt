@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/VisualProyector/Scene/PluginScene.unity
+  isLoaded: 1
+  isActive: 1
