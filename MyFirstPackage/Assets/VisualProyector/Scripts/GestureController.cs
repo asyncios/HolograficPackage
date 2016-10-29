@@ -7,23 +7,31 @@ public class GestureController : MonoBehaviour {
     {
         moveWithRightHand,
         rotateWithRightHand,
-        rotateWithTwoHand
+        rotateWithTwoHand,
+        rotateWithOneHandClosed,
+        rotateWithOneHandClosedAndMove
     };
 
     public GestureEnumOption gestureOption;
     public float rotationSmooth;
+    private bool closesHand;
     public GameObject handLeft;
     public GameObject handRight;
     public GameObject kinectController;
     private BodySourceManager _bodyManager;
+    private Vector3 originPosition;
+    private Vector3 startPosition;
+    private bool isFirstStart;
 
     // Use this for initialization
     void Start () {
-	
+        isFirstStart = true;
+        originPosition = this.transform.position;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         if (isTracked())
         {
@@ -39,11 +47,34 @@ public class GestureController : MonoBehaviour {
 
             if (gestureOption == GestureEnumOption.rotateWithTwoHand)
             {
-                Vector3 rotationVector = (handRight.transform.position- handLeft.transform.position) * rotationSmooth;
+                Vector3 rotationVector = (handRight.transform.position - handLeft.transform.position) * rotationSmooth;
                 this.transform.rotation = Quaternion.LookRotation(rotationVector);
             }
+
+            if (gestureOption == GestureEnumOption.rotateWithOneHandClosed && closesHand)
+            {
+                Vector3 rotationVector = (handRight.transform.position - handLeft.transform.position) * rotationSmooth;
+                this.transform.rotation = Quaternion.LookRotation(rotationVector);
+            }
+
+            if (gestureOption == GestureEnumOption.rotateWithOneHandClosedAndMove && closesHand)
+            {
+                Vector3 rotationVector = (handRight.transform.position - handLeft.transform.position) * rotationSmooth;
+                this.transform.rotation = Quaternion.LookRotation(rotationVector);
+                if (isFirstStart)
+                {
+                    startPosition = (handRight.transform.position+handLeft.transform.position)/2;
+                    isFirstStart = false;
+                }
+                Vector3 diffPosition = (handRight.transform.position + handLeft.transform.position) / 2 - startPosition;
+                this.transform.position = originPosition + diffPosition;
+            }
+            else
+            {
+                isFirstStart = true;
+            }
         }
-	}
+    }
 
     public bool isTracked()
     {
@@ -69,6 +100,14 @@ public class GestureController : MonoBehaviour {
             }
             if (body.IsTracked)
             {
+                if (body.HandLeftState == HandState.Closed || body.HandRightState == HandState.Closed)
+                {
+                    closesHand = true;
+                }
+                else
+                {
+                    closesHand = false;
+                }
                 return true;
             }
         }
