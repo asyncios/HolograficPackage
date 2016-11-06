@@ -177,18 +177,11 @@ public class BodySourceView : MonoBehaviour
 								SceneManager.LoadScene("Menu");
 								return;
 							}	
-							SceneManager.LoadScene("GameFN");		
+							SceneManager.LoadScene("DemoScene");		
 
 						
 						}
-						else if (button == buttons[1])//Con tiempo
-						{
-							opcionMenu = 1;
-							SceneManager.LoadScene("GameFN");	
-							//Application.LoadLevel("Game");
-						
-
-						}else if(button == buttons[2]) //Scores
+						else if(button == buttons[1]) //Scores
 						{
 							opcionMenu = 2;
 							SceneManager.LoadScene("Score");	

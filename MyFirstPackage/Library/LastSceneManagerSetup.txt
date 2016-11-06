@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/DemoScene.unity
+- path: Assets/Scene/Score.unity
   isLoaded: 1
   isActive: 1
