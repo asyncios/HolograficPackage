@@ -14,7 +14,7 @@ public class GestureController : MonoBehaviour {
 
     public GestureEnumOption gestureOption;
     public float rotationSmooth;
-    private bool closesHand;
+    protected bool closesHand;
     public GameObject handLeft;
     public GameObject handRight;
     public GameObject kinectController;
@@ -23,22 +23,35 @@ public class GestureController : MonoBehaviour {
     private Vector3 startPosition;
     private bool isFirstStart;
 
-    // Use this for initialization
-    void Start () {
+    protected void StartConstructor()
+    {
         isFirstStart = true;
         originPosition = this.transform.position;
-	}
+    }
 
-    // Update is called once per frame
-    void Update()
+    // Use this for initialization
+    void Start () {
+        this.StartConstructor();
+
+    }
+
+    protected void VerifyOnUpdate()
     {
-
         if (isTracked())
         {
             if (gestureOption == GestureEnumOption.moveWithRightHand)
             {
-                this.transform.position = handRight.transform.position;
+                if (isFirstStart)
+                {
+                    startPosition = handRight.transform.position;
+                    
+                    isFirstStart = false;
+                }
+                Vector3 diffPosition = handRight.transform.position - startPosition;
+                
+                this.transform.position = originPosition + diffPosition;
             }
+
             if (gestureOption == GestureEnumOption.rotateWithRightHand)
             {
                 Vector3 rotationVector = handRight.transform.position * rotationSmooth;
@@ -63,17 +76,24 @@ public class GestureController : MonoBehaviour {
                 this.transform.rotation = Quaternion.LookRotation(rotationVector);
                 if (isFirstStart)
                 {
-                    startPosition = (handRight.transform.position+handLeft.transform.position)/2;
+                    startPosition = (handRight.transform.position + handLeft.transform.position) / 2;
                     isFirstStart = false;
                 }
                 Vector3 diffPosition = (handRight.transform.position + handLeft.transform.position) / 2 - startPosition;
                 this.transform.position = originPosition + diffPosition;
             }
-            else
-            {
-                isFirstStart = true;
-            }
+
         }
+        else
+        {
+            isFirstStart = true;
+        }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        this.VerifyOnUpdate();
+        
     }
 
     public bool isTracked()
