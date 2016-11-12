@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AnimatorStormTrooper.cs" />
+    <Compile Include="Assets\Scripts\ButtonGestureController.cs" />
     <Compile Include="Assets\Scripts\Force.cs" />
     <Compile Include="Assets\Scripts\ForceGestureController.cs" />
     <Compile Include="Assets\Scripts\GunShooting.cs" />

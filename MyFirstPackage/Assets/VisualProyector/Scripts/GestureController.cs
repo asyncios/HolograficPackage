@@ -6,6 +6,7 @@ public class GestureController : MonoBehaviour {
     public enum GestureEnumOption
     {
         moveWithRightHand,
+        moveWithRightHandOn2D,
         rotateWithRightHand,
         rotateWithTwoHand,
         rotateWithOneHandClosed,
@@ -14,6 +15,7 @@ public class GestureController : MonoBehaviour {
 
     public GestureEnumOption gestureOption;
     public float rotationSmooth;
+    private float moveOn2DScale = 10.0f;
     protected bool closesHand;
     public GameObject handLeft;
     public GameObject handRight;
@@ -26,7 +28,15 @@ public class GestureController : MonoBehaviour {
     protected void StartConstructor()
     {
         isFirstStart = true;
-        originPosition = this.transform.position;
+        if (gestureOption == GestureEnumOption.moveWithRightHandOn2D)
+        {
+            originPosition = this.transform.localPosition;
+        }
+        else
+        {
+            originPosition = this.transform.position;
+        }
+        
     }
 
     // Use this for initialization
@@ -51,6 +61,21 @@ public class GestureController : MonoBehaviour {
                 
                 this.transform.position = originPosition + diffPosition;
             }
+
+            if (gestureOption == GestureEnumOption.moveWithRightHandOn2D)
+            {
+                if (isFirstStart)
+                {
+                    startPosition = handRight.transform.position;
+
+                    isFirstStart = false;
+                }
+                Vector3 diffPosition = handRight.transform.position - startPosition;
+                diffPosition *= moveOn2DScale;
+                Vector3 resultPosition = originPosition + diffPosition;
+                this.transform.localPosition = new Vector3(resultPosition.x, resultPosition.y, 0.0f);
+            }
+
 
             if (gestureOption == GestureEnumOption.rotateWithRightHand)
             {
