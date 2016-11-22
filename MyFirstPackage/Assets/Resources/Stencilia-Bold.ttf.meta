@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 6099bb84884c72b469e6aebceaff9d40
+timeCreated: 1479651275
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Stencilia-Bold
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 09208f1f1e951ed4780833d580a4875e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

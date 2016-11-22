@@ -10,7 +10,8 @@ public class GestureController : MonoBehaviour {
         rotateWithRightHand,
         rotateWithTwoHand,
         rotateWithOneHandClosed,
-        rotateWithOneHandClosedAndMove
+        rotateWithOneHandClosedAndMove,
+        rotateWithOneHandClosedAndMoveNoZDimension,
     };
 
     public GestureEnumOption gestureOption;
@@ -21,7 +22,7 @@ public class GestureController : MonoBehaviour {
     public GameObject handRight;
     public GameObject kinectController;
     private BodySourceManager _bodyManager;
-    private Vector3 originPosition;
+    protected Vector3 originPosition;
     private Vector3 startPosition;
     private bool isFirstStart;
 
@@ -108,6 +109,19 @@ public class GestureController : MonoBehaviour {
                 this.transform.position = originPosition + diffPosition;
             }
 
+            if (gestureOption == GestureEnumOption.rotateWithOneHandClosedAndMoveNoZDimension && closesHand)
+            {
+                Vector3 rotationVector = (handRight.transform.position - handLeft.transform.position) * rotationSmooth;
+                this.transform.rotation = Quaternion.LookRotation(rotationVector);
+                if (isFirstStart)
+                {
+                    startPosition = (handRight.transform.position + handLeft.transform.position) / 2;
+                    isFirstStart = false;
+                }
+                Vector3 diffPosition = (handRight.transform.position + handLeft.transform.position) / 2 - startPosition;
+                diffPosition = new Vector3(diffPosition.x,diffPosition.y,0);
+                this.transform.position = originPosition + diffPosition;
+            }
         }
         else
         {

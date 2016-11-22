@@ -110,6 +110,7 @@
     <None Include="Assets\LaserShaders\VolumetricLineStripShaderAlphaBlended.shader" />
     <None Include="Assets\Model\Blaster DC-15s\Read-me.txt" />
     <None Include="Assets\Resources\Font\OFL.txt" />
+    <None Include="Assets\Resources\OFL.txt" />
     <None Include="Assets\root\Shaders\Alpha-BumpSpec.shader" />
     <None Include="Assets\root\Shaders\Alpha-Bumped.shader" />
     <None Include="Assets\root\Shaders\Alpha-Diffuse.shader" />

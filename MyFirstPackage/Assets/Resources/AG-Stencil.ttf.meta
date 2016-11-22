@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 37757a69256f22f4184112a8d320c0f5
+timeCreated: 1479651274
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - AG Stencil
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3865ce763dc4a9e4885bcd8ea0d16ab8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

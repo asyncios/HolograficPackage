@@ -71,9 +71,12 @@
     <Compile Include="Assets\Scripts\Force.cs" />
     <Compile Include="Assets\Scripts\ForceGestureController.cs" />
     <Compile Include="Assets\Scripts\GunShooting.cs" />
+    <Compile Include="Assets\Scripts\LightSaberStormTrooper.cs" />
+    <Compile Include="Assets\Scripts\PersonCubeController.cs" />
     <Compile Include="Assets\Scripts\Score\Scores.cs" />
     <Compile Include="Assets\Scripts\ShotBehavior.cs" />
     <Compile Include="Assets\Scripts\Splash\Splash.cs" />
+    <Compile Include="Assets\Scripts\StormTrooperColision.cs" />
     <Compile Include="Assets\Scripts\Utils\ExposePropertyAttribute.cs" />
     <Compile Include="Assets\Scripts\Utils\TransformExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\VolumetricLineBehavior.cs" />
@@ -196,6 +199,7 @@
     <None Include="Assets\LaserShaders\VolumetricLineStripShaderAlphaBlended.shader" />
     <None Include="Assets\Model\Blaster DC-15s\Read-me.txt" />
     <None Include="Assets\Resources\Font\OFL.txt" />
+    <None Include="Assets\Resources\OFL.txt" />
     <None Include="Assets\root\Shaders\Alpha-BumpSpec.shader" />
     <None Include="Assets\root\Shaders\Alpha-Bumped.shader" />
     <None Include="Assets\root\Shaders\Alpha-Diffuse.shader" />
